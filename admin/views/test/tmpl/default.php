@@ -15,11 +15,12 @@ $params = JComponentHelper::getParams('com_auth0');
 
 $clientid = $params->get('clientid');
 $clientsecret = $params->get('clientsecret');
+$clientAudience = $params->get('clientaudience');
 $domain = 'https://' . $params->get('domain');
 
 echo '<div class="span10"><div class="well well-small"><ul>';
 
-if (trim($clientid) == "" || trim($clientsecret) == "" || trim($domain) == "") {
+if (trim($clientid) == "" || trim($clientsecret) == "" || trim($domain) == "" || trim($clientAudience) == "") {
     echo '<li>Auth0 app data: <span style="color:red"><b>Incomplete</b></span></li>';
 } else {
 
@@ -27,7 +28,7 @@ if (trim($clientid) == "" || trim($clientsecret) == "" || trim($domain) == "") {
     require_once( JPATH_ROOT.DIRECTORY_SEPARATOR.'components'.DIRECTORY_SEPARATOR.'com_auth0'.DIRECTORY_SEPARATOR.'inc'.DIRECTORY_SEPARATOR.'auth0_connect.php' );
 
     try {
-        $auth0 = new Auth0Connect($domain, $clientid, $clientsecret, JRoute::_('index.php?option=com_auth0&task=auth', true, -1));
+        $auth0 = new Auth0Connect($domain, $clientid, $clientsecret, $clientAudience, JRoute::_('index.php?option=com_auth0&task=auth', true, -1));
         $auth0->getToken();
 
         echo '<li>Auth0 app data: <span style="color:green"><b>Complete</b></span></li>';
