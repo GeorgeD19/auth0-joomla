@@ -75,11 +75,12 @@ class auth0Controller extends JControllerLegacy
 
         $clientid = $com_params->get('clientid');
         $clientsecret = $com_params->get('clientsecret');
+        $clientAudience = $com_params->get('clientaudience');
         $domain = 'https://' . $com_params->get('domain');
 
         $code = $this->app->input->getVar('code');
 
-        $auth0 = new Auth0Connect($domain, $clientid, $clientsecret, JRoute::_('index.php?option=com_auth0&task=auth', true, -1));
+        $auth0 = new Auth0Connect($domain, $clientid, $clientsecret, $clientAudience, JRoute::_('index.php?option=com_auth0&task=auth', true, -1));
 
         try {
             $accessToken = $auth0->getAccessToken($code);
