@@ -34,6 +34,7 @@ class Auth0Connect {
             'client_id' => $this->clientId,
             'redirect_uri' => $this->redirectURL,
             'client_secret' => $this->clientSecret,
+            'audience' => $this->clientAudience,
             'code' => $code,
             'grant_type' => 'authorization_code'
         );
