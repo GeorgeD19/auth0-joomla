@@ -6,6 +6,8 @@
         <field name="clientid" type="text" default="" label="Client id" description="Client id description"/>
         <field name="clientsecret" type="text" default="" label="Client secret"
                description="Client secret description"/>
+        <field name="clientaudience" type="text" default="" label="Client audience"
+               description="Client audience description"/>
 
     </fieldset>
 </config>
