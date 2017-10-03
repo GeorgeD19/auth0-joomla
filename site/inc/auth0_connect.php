@@ -14,14 +14,16 @@ class Auth0Connect {
     protected $clientId;
     protected $clientSecret;
     protected $redirectURL;
+    protected $clientAudience;
     protected $http;
 
-    public function __construct($domain, $clientId, $clientSecret, $redirectURL) {
+    public function __construct($domain, $clientId, $clientSecret, $clientAudience, $redirectURL) {
 
         $this->domain = $domain;
         $this->clientId = $clientId;
         $this->clientSecret = $clientSecret;
         $this->redirectURL = $redirectURL;
+        $this->clientAudience = $clientAudience;
         $this->http = new JHttp();
 
     }
@@ -67,7 +69,8 @@ class Auth0Connect {
         $body = array(
             'client_id' => $this->clientId,
             'client_secret' => $this->clientSecret,
-            'grant_type' => $grantType
+            'grant_type' => $grantType,
+            'audience' => $this->clientAudience
         );
         $headers = array(
             'content-type' => 'application/x-www-form-urlencoded'
